@@ -1,0 +1,7 @@
+SW01,Fitbit Versa,true,25%
+SW02,Garmin Venu,false,80%
+P01,Dell XPS,true,Windows 11
+P02,MacBook Pro,false,macOS
+P03,Office Desktop,true,Linux
+ED01,Sensor A,true,192.168.1.10,CoreNet MD Ltd.
+ED02,Gateway B,false,10.0.0.1,EdgeZone MD Ltd.
