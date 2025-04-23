@@ -5,6 +5,13 @@ namespace DeviceManagementSystem.Logic;
 
 public class DeviceService : IDeviceService
 {
+    
+    private string _connectionString;
+    public DeviceService(string connectionString)
+    {
+        _connectionString = connectionString;
+    }
+    
     /// <summary>
     /// Returns the list of devices in db
     /// </summary>
