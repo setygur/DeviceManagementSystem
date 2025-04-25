@@ -1,6 +1,6 @@
 using DeviceManagementSystem.Objects.Devices;
 
-namespace DeviceManagementSystem.Logic;
+namespace DeviceManagementSystem.Logic.Services;
 
 public interface IDeviceService
 {

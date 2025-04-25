@@ -1,12 +1,12 @@
-using DeviceManagementSystem.Objects.Devices;
 using DeviceManagementSystem.Database.DBMock;
+using DeviceManagementSystem.Objects.Devices;
 
-namespace DeviceManagementSystem.Logic;
+namespace DeviceManagementSystem.Logic.Services;
 
-public class DeviceService : IDeviceService
+public class DeviceService
 {
-    
     private string _connectionString;
+    
     public DeviceService(string connectionString)
     {
         _connectionString = connectionString;
