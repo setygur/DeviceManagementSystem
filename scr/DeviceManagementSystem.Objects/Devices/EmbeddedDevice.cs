@@ -6,7 +6,7 @@ namespace DeviceManagementSystem.Objects.Devices;
 public class EmbeddedDevice : Device
 {
     private string? _ip;
-    public string NetworkName { get; }
+    public string NetworkName { get; set; }
 
     /// <summary>
     /// A Constructor for a EmbeddedDevice object
