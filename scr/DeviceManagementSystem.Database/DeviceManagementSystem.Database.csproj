@@ -10,10 +10,4 @@
     <ProjectReference Include="..\DeviceManagementSystem.Objects\DeviceManagementSystem.Objects.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <None Update="DBMock\database.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-
 </Project>

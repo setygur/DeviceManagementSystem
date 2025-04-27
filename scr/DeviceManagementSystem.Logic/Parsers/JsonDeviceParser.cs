@@ -1,5 +1,6 @@
 using System.Text.Json;
 using System.Text.Json.Nodes;
+using DeviceManagementSystem.Logic.Parsers.ParsersExceptions;
 using DeviceManagementSystem.Objects.Devices;
 
 namespace DeviceManagementSystem.Logic.Parsers;
@@ -18,7 +19,7 @@ public class JsonDeviceParser : IDeviceParser
         var json = JsonNode.Parse(jsonText);
         if (json == null) return null;
 
-        return json switch
+        Device? device = json switch
         {
             JsonObject obj when obj.ContainsKey("batterypercentage")
                 => JsonSerializer.Deserialize<Smartwatch>(json.ToJsonString(), _options),
@@ -31,5 +32,19 @@ public class JsonDeviceParser : IDeviceParser
 
             _ => null
         };
+
+        if (device == null)
+            return null;
+
+        try
+        {
+            device.Validate();
+        }
+        catch (Exception e)
+        {
+            throw new ValidationException(e.Message);
+        }
+
+        return device;
     }
 }

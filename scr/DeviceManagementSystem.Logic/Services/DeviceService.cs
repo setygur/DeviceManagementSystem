@@ -1,9 +1,11 @@
+using DeviceManagementSystem.Database.Models;
+using DeviceManagementSystem.Logic.Services.ServicesExceptions;
 using DeviceManagementSystem.Objects.Devices;
 using Microsoft.Data.SqlClient;
 
 namespace DeviceManagementSystem.Logic.Services;
 
-public class DeviceService
+public class DeviceService : IDeviceService
 {
     private string _connectionString;
     
@@ -11,11 +13,10 @@ public class DeviceService
     {
         _connectionString = connectionString;
     }
-
-    //TODO add data validation
-    public IEnumerable<(string Id, string Name, bool IsEnabled)> GetAllDevices()
+    
+    public IEnumerable<DeviceDTO> GetAllDevices()
     {
-        var devices = new List<(string Id, string Name, bool IsOn)>();
+        var devices = new List<DeviceDTO>();
 
         string query = "SELECT Id, Name, IsEnabled FROM Device";
 
@@ -30,8 +31,8 @@ public class DeviceService
                 {
                     while (reader.Read())
                     {
-                        (string Id, string Name, bool IsOn) device =
-                            (reader.GetString(0), reader.GetString(1), reader.GetBoolean(2));
+                        var device = new DeviceDTO(reader.GetString(0),
+                            reader.GetString(1), reader.GetBoolean(2));
 
                         devices.Add(device);
                     }
@@ -49,8 +50,7 @@ public class DeviceService
     /// <returns>Return Device with matching id</returns>
     public Device? GetDeviceById(string id)
     {
-        //use tuple instead of a Device, because Device is abstract
-        (string? Id, string? Name, bool? IsOn) baseDeviceData = (null,null,null);
+        var baseDeviceData = new DeviceDTO(null, null, null);
 
         using (SqlConnection connection = new SqlConnection(_connectionString))
         {
@@ -65,11 +65,13 @@ public class DeviceService
                 {
                     while(reader.Read())
                     {
-                        baseDeviceData = (reader.GetString(0), reader.GetString(1), reader.GetBoolean(2));
+                        baseDeviceData.Id = reader.GetString(0);
+                        baseDeviceData.Name = reader.GetString(1);
+                        baseDeviceData.IsOn = reader.GetBoolean(2);
                     }
                 }
             }
-            //TODO remake with the use of a new helper method
+            
             var embeddedCmd = new SqlCommand(
                 "SELECT IpAddress, NetworkName FROM Embedded WHERE DeviceId = @Id", connection);
             embeddedCmd.Parameters.AddWithValue("@Id", id);
@@ -111,8 +113,8 @@ public class DeviceService
                         reader.GetInt32(0));
                 }
             }
-            
-            return null;
+
+            throw new NotFoundException();
         }
     }
 
@@ -179,7 +181,7 @@ public class DeviceService
         catch
         {
             transaction.Rollback();
-            return false; //maybe throw?
+            throw;
         }
     }
 
@@ -230,7 +232,7 @@ public class DeviceService
             }
             updateSpecificCommand.Parameters.AddWithValue("@Id", updatedDevice.Id);
 
-            //Check the database for the device with such id and type
+            //Check the database for the device with such id
             var checkCmd = new SqlCommand(checkQuery, connection, transaction);
             checkCmd.Parameters.AddWithValue("@Id", updatedDevice.Id);
             int count = (int)checkCmd.ExecuteScalar();
@@ -265,20 +267,19 @@ public class DeviceService
 
         try
         {
-            // Determine which device table contains the ID
             string? tableToDeleteFrom = GetDeviceSubtypeTable(connection, transaction, id);
 
             if (tableToDeleteFrom == null)
-                return false; // Device not found in any specific table
+                return false;
 
-            // Delete from specific table
+            //Specific table
             var deleteSpecificCmd = new SqlCommand(
                 $"DELETE FROM {tableToDeleteFrom} WHERE DeviceId = @Id",
                 connection, transaction);
             deleteSpecificCmd.Parameters.AddWithValue("@Id", id);
             deleteSpecificCmd.ExecuteNonQuery();
 
-            // Delete from Device table
+            //Device table
             var deleteDeviceCmd = new SqlCommand(
                 "DELETE FROM Device WHERE Id = @Id",
                 connection, transaction);
@@ -294,8 +295,6 @@ public class DeviceService
             throw;
         }
     }
-
-    
     private string? GetDeviceSubtypeTable(SqlConnection conn, SqlTransaction tx, string id)
     {
         var tables = new Dictionary<string, string>
@@ -313,7 +312,6 @@ public class DeviceService
             if (count > 0)
                 return tableName;
         }
-
-        return null; // Not found in any specific table
+        throw new NotFoundException();
     }
 }

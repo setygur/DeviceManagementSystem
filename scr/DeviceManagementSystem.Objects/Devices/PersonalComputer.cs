@@ -1,18 +1,12 @@
+using System.Text.Json.Serialization;
+
 namespace DeviceManagementSystem.Objects.Devices;
 using DeviceManagementSystem.Objects.Devices.DevicesExceptions;
 
 public class PersonalComputer : Device
 {
     public string? OperatingSystem { get; private set; }
-
-    /// <summary>
-    /// A constructor for a PersonalComputer object, does not take OperatingSystem as a param
-    /// </summary>
-    /// <param name="id"></param>
-    /// <param name="name"></param>
-    /// <param name="isOn"></param>
-    public PersonalComputer(string id, string name, bool isOn) : base(id, name, isOn) {} //cannot remove due to tests
-
+    
     /// <summary>
     /// A constructor for a PersonalComputer object, take OperatingSystem as a param
     /// </summary>
@@ -20,6 +14,7 @@ public class PersonalComputer : Device
     /// <param name="name"></param>
     /// <param name="isOn"></param>
     /// <param name="operatingSystem"></param>
+    [JsonConstructor]
     public PersonalComputer(string id, string name, bool isOn, string? operatingSystem) : base(id, name, isOn)
     {
         OperatingSystem = operatingSystem;
@@ -47,5 +42,13 @@ public class PersonalComputer : Device
     public override string ToString()
     {
         return Id + "," + Name + "," + IsOn + "," + OperatingSystem;
+    }
+
+    public override void Validate()
+    {
+        if (IsOn && OperatingSystem == null)
+        {
+            throw new EmptySystemException();
+        }
     }
 }

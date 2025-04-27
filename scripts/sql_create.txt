@@ -1,0 +1,27 @@
+CREATE TABLE Device (
+    Id VARCHAR(50) PRIMARY KEY,
+    Name NVARCHAR(100),
+    IsEnabled BIT
+);
+
+CREATE TABLE Embedded (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    IpAddress VARCHAR(50),
+    NetworkName VARCHAR(100),
+    DeviceId VARCHAR(50),
+    FOREIGN KEY (DeviceId) REFERENCES Device(Id)
+);
+
+CREATE TABLE PersonalComputer (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    OperationSystem VARCHAR(100),
+    DeviceId VARCHAR(50),
+    FOREIGN KEY (DeviceId) REFERENCES Device(Id)
+);
+
+CREATE TABLE Smartwatch (
+    Id INT PRIMARY KEY IDENTITY(1,1),
+    BatteryPercentage INT,
+    DeviceId VARCHAR(50),
+    FOREIGN KEY (DeviceId) REFERENCES Device(Id)
+);

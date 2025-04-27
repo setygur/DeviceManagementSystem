@@ -2,7 +2,7 @@ namespace DeviceManagementSystem.Objects.Devices;
 
 public abstract class Device
 {
-    public string Id { get; set; } //no set to prevent modification. Can be modified with EditDevice()
+    public string Id { get; set; }
     public string Name { get; set; }
     public bool IsOn { get; set; }
 
@@ -79,4 +79,6 @@ public abstract class Device
     {
         return "Unknown Device";
     }
+    
+    public abstract void Validate();
 }

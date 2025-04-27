@@ -1,3 +1,4 @@
+using System.Text.Json.Serialization;
 using System.Text.RegularExpressions;
 using DeviceManagementSystem.Objects.Devices.DevicesExceptions;
 
@@ -5,7 +6,7 @@ namespace DeviceManagementSystem.Objects.Devices;
 
 public class EmbeddedDevice : Device
 {
-    private string? _ip;
+    private string _ip;
     public string NetworkName { get; set; }
 
     /// <summary>
@@ -17,6 +18,7 @@ public class EmbeddedDevice : Device
     /// <param name="ip"></param>
     /// <param name="networkName"></param>
     /// <exception cref="ArgumentNullException"></exception>
+    [JsonConstructor]
     public EmbeddedDevice(string id, string name, bool isOn, string ip, string networkName) 
         : base(id, name, isOn)
     {
@@ -29,6 +31,11 @@ public class EmbeddedDevice : Device
             throw new ArgumentNullException(nameof(networkName));
         }
         Ip = ip;
+
+        if (isOn = true && Connect(networkName))
+        {
+            throw new ConnectionException();
+        }
     }
     
     /// <summary>
@@ -113,5 +120,17 @@ public class EmbeddedDevice : Device
     public override string ToString()
     {
         return Id + "," + Name + "," + _ip + "," + NetworkName; 
+    }
+
+    public override void Validate()
+    {
+        if (!CheckIp(_ip))
+        {
+            throw new ArgumentException("Invalid IP address");
+        }
+        if (IsOn && Connect(NetworkName))
+        {
+            throw new ConnectionException();
+        }
     }
 }

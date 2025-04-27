@@ -1,17 +1,18 @@
+using DeviceManagementSystem.Database.Models;
 using DeviceManagementSystem.Objects.Devices;
 
 namespace DeviceManagementSystem.Logic.Services;
 
 public interface IDeviceService
 {
-    IEnumerable<Device?> GetAll();
+    IEnumerable<DeviceDTO> GetAllDevices();
 
-    Device? GetById(string id);
+    Device? GetDeviceById(string id);
 
     bool CreateDevice(Device device);
 
-    bool UpdateDevice(string id, Device updatedDevice);
+    bool UpdateDevice(Device updatedDevice);
 
-    bool Delete(string id);
+    public bool DeleteDeviceById(string id);
 
 }

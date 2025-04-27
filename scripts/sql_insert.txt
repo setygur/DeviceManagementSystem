@@ -1,0 +1,74 @@
+INSERT INTO Device (Id, Name, IsEnabled)
+VALUES
+
+('ED-001', 'Temp Sensor A', 1),
+('ED-002', 'Temp Sensor B', 1),
+('ED-003', 'Pressure Sensor A', 0),
+('ED-004', 'Humidity Monitor', 1),
+('ED-005', 'Gas Detector', 1),
+('ED-006', 'Vibration Node A', 1),
+('ED-007', 'Flow Controller', 0),
+('ED-008', 'Relay Switch A', 1),
+('ED-009', 'Light Sensor A', 1),
+('ED-010', 'Door Sensor A', 0),
+
+('P-001', 'Office Workstation', 1),
+('P-002', 'Developer PC', 0),
+('P-003', 'Graphics Workstation', 1),
+('P-004', 'Data Analysis Laptop', 0),
+('P-005', 'Support Desk PC', 1),
+('P-006', 'Lab Computer', 0),
+('P-007', 'Finance PC', 1),
+('P-008', 'Admin Laptop', 0),
+('P-009', 'QA Testing Rig', 1),
+('P-010', 'Remote Workstation', 1),
+
+('SW-001', 'Fitness Band A', 1),
+('SW-002', 'Smartwatch Alpha', 0),
+('SW-003', 'Pulse Monitor A', 1),
+('SW-004', 'Activity Tracker', 1),
+('SW-005', 'Smartwatch Pro', 1),
+('SW-006', 'Step Counter B', 0),
+('SW-007', 'Sleep Monitor', 1),
+('SW-008', 'Smartwatch Mini', 1),
+('SW-009', 'Sport Watch', 1),
+('SW-010', 'Heart Tracker', 1);
+
+INSERT INTO Embedded (IpAddress, NetworkName, DeviceId)
+VALUES
+('10.0.0.1', 'Sensors MD Ltd.', 'ED-001'),
+('10.0.0.2', 'Controllers MD Ltd.', 'ED-002'),
+('10.0.0.3', 'Automation MD Ltd.', 'ED-003'),
+('10.0.0.4', 'Monitoring MD Ltd.', 'ED-004'),
+('10.0.0.5', 'Gas Systems MD Ltd.', 'ED-005'),
+('10.0.0.6', 'Nodes MD Ltd.', 'ED-006'),
+('10.0.0.7', 'FlowNet MD Ltd.', 'ED-007'),
+('10.0.0.8', 'Switches MD Ltd.', 'ED-008'),
+('10.0.0.9', 'LightSys MD Ltd.', 'ED-009'),
+('10.0.0.10', 'Entry MD Ltd.', 'ED-010');
+
+INSERT INTO PersonalComputer (OperationSystem, DeviceId)
+VALUES
+('Windows 11', 'P-001'),
+(NULL, 'P-002'),
+('macOS Ventura', 'P-003'),
+(NULL, 'P-004'),
+('Linux Mint', 'P-005'),
+(NULL, 'P-006'),
+('Windows 10 Pro', 'P-007'),
+(NULL, 'P-008'),
+('Pop!_OS', 'P-009'),
+('Windows 11 Pro', 'P-010');
+
+INSERT INTO Smartwatch (BatteryPercentage, DeviceId)
+VALUES
+(85, 'SW-001'),
+(67, 'SW-002'),
+(92, 'SW-003'),
+(45, 'SW-004'),
+(88, 'SW-005'),
+(33, 'SW-006'),
+(76, 'SW-007'),
+(59, 'SW-008'),
+(93, 'SW-009'),
+(71, 'SW-010');
