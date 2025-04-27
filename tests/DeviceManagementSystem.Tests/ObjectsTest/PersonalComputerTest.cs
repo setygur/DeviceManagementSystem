@@ -8,7 +8,7 @@ public class PersonalComputerTest
     [Fact]
     public void Constructor_ShouldInitializeCorrectly_WithoutOperatingSystem()
     {
-        var pc = new PersonalComputer("1", "TestPC", false);
+        var pc = new PersonalComputer("1", "TestPC", false, "Windows");
         Assert.NotNull(pc);
     }
 
@@ -22,7 +22,7 @@ public class PersonalComputerTest
     [Fact]
     public void TurnOn_ShouldThrowEmptySystemException_WhenOperatingSystemIsNull()
     {
-        var pc = new PersonalComputer("1", "TestPC", false);
+        var pc = new PersonalComputer("1", "TestPC", false, "Windows");
         Assert.Throws<EmptySystemException>(() => pc.turnOn());
     }
 

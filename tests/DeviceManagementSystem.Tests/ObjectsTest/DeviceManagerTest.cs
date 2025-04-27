@@ -11,7 +11,7 @@ public class DeviceManagerTest
     public void AddDevice_ShouldAddDevice_WhenSpaceAvailable()
     {
         var manager = new DeviceManager(testFilePath);
-        var device = new PersonalComputer("1", "PC-01", false);
+        var device = new PersonalComputer("1", "PC-01", false, "Windows");
 
         manager.AddDevice(device);
         Assert.Contains(device, manager.GetDevices());
@@ -21,7 +21,7 @@ public class DeviceManagerTest
     public void RemoveDevice_ShouldRemoveDevice_WhenDeviceExists()
     {
         var manager = new DeviceManager(testFilePath);
-        var device = new PersonalComputer("1", "PC-01", false);
+        var device = new PersonalComputer("1", "PC-01", false, "Windows");
         manager.AddDevice(device);
         manager.RemoveDevice(device);
 
@@ -32,7 +32,7 @@ public class DeviceManagerTest
     public void TurnOnDevice_ShouldTurnOn_WhenDeviceIsOff()
     {
         var manager = new DeviceManager(testFilePath);
-        var device = new PersonalComputer("1", "PC-01", false);
+        var device = new PersonalComputer("1", "PC-01", false, "Windows");
         manager.AddDevice(device);
         manager.TurnOnDevice(device);
 
@@ -43,7 +43,7 @@ public class DeviceManagerTest
     public void TurnOffDevice_ShouldTurnOff_WhenDeviceIsOn()
     {
         var manager = new DeviceManager(testFilePath);
-        var device = new PersonalComputer("1", "PC-01", true);
+        var device = new PersonalComputer("1", "PC-01", true, "Windows");
         manager.AddDevice(device);
         manager.TurnOffDevice(device);
 
@@ -54,7 +54,7 @@ public class DeviceManagerTest
     public void ExportDevices_ShouldCreateFile_WithDeviceData()
     {
         var manager = new DeviceManager(testFilePath);
-        var device = new PersonalComputer("1", "PC-01", true);
+        var device = new PersonalComputer("1", "PC-01", true, "Windows");
         manager.AddDevice(device);
 
         string outputPath = Path.Combine(Path.GetTempPath(), "ExportTest");

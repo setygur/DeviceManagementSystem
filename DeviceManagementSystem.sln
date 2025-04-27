@@ -1,12 +1,12 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeviceManagementSystem.Database", "scr\DeviceManagementSystem.Database\DeviceManagementSystem.Database.csproj", "{A92AFB98-F4C3-4E57-8011-493A5954914D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeviceManagementSystem.Database", "src/DeviceManagementSystem.Database\DeviceManagementSystem.Database.csproj", "{A92AFB98-F4C3-4E57-8011-493A5954914D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeviceManagementSystem.Logic", "scr\DeviceManagementSystem.Logic\DeviceManagementSystem.Logic.csproj", "{4BC916D7-14EF-4734-8C79-D7F6BCDC89B0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeviceManagementSystem.Logic", "src/DeviceManagementSystem.Logic\DeviceManagementSystem.Logic.csproj", "{4BC916D7-14EF-4734-8C79-D7F6BCDC89B0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeviceManagementSystem.Objects", "scr\DeviceManagementSystem.Objects\DeviceManagementSystem.Objects.csproj", "{B3839981-011E-436E-B678-619CC0E9454E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeviceManagementSystem.Objects", "src/DeviceManagementSystem.Objects\DeviceManagementSystem.Objects.csproj", "{B3839981-011E-436E-B678-619CC0E9454E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeviceManagementSystem.WebApi", "scr\DeviceManagementSystem.WebApi\DeviceManagementSystem.WebApi.csproj", "{C6B56E68-C40E-45FA-AE97-69CCFB0D2EE4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeviceManagementSystem.WebApi", "src/DeviceManagementSystem.WebApi\DeviceManagementSystem.WebApi.csproj", "{C6B56E68-C40E-45FA-AE97-69CCFB0D2EE4}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeviceManagementSystem.Tests", "tests\DeviceManagementSystem.Tests\DeviceManagementSystem.Tests.csproj", "{27C18412-77E1-48FD-8B0B-702C926FF82A}"
 EndProject
