@@ -1,4 +1,4 @@
-namespace DeviceManagementSystem.Objects.Devices.DevicesExceptions;
+﻿namespace DeviceManagementSystem.Objects.Devices.DevicesExceptions;
 
 public class ConnectionException : Exception
 {

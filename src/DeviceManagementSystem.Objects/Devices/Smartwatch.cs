@@ -6,6 +6,7 @@ namespace DeviceManagementSystem.Objects.Devices;
 public class Smartwatch : Device, IPowerNotifier
 {
     private int _batteryPercentage;
+    public byte[]? RowVersion { get; set; }
     /// <summary>
     /// A constructor for a Smartwatch object
     /// </summary>
@@ -17,6 +18,11 @@ public class Smartwatch : Device, IPowerNotifier
     public Smartwatch(string id, string name, bool isOn, int batteryPercentage) : base(id, name, isOn)
     {
         BatteryPercentage = batteryPercentage; 
+    }
+    public Smartwatch(string id, string name, bool isOn, int batteryPercentage, byte[]? rowVersion) : base(id, name, isOn)
+    {
+        BatteryPercentage = batteryPercentage; 
+        RowVersion = rowVersion;
     }
 
     /// <summary>

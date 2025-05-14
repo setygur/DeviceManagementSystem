@@ -1,8 +1,8 @@
 using System.Text.Json;
+using DeviceManagementSystem.Database.Repositories.RepositoryExceptions;
 using DeviceManagementSystem.Logic.Parsers;
 using DeviceManagementSystem.Logic.Parsers.ParsersExceptions;
 using DeviceManagementSystem.Logic.Services;
-using DeviceManagementSystem.Logic.Services.ServicesExceptions;
 
 var builder = WebApplication.CreateBuilder(args);
 

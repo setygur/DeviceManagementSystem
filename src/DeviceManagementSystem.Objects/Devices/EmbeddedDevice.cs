@@ -8,6 +8,7 @@ public class EmbeddedDevice : Device
 {
     private string _ip;
     public string NetworkName { get; set; }
+    public byte[]? RowVersion { get; set; }
 
     /// <summary>
     /// A Constructor for a EmbeddedDevice object
@@ -36,6 +37,25 @@ public class EmbeddedDevice : Device
         {
             throw new ConnectionException();
         }
+    }
+    public EmbeddedDevice(string id, string name, bool isOn, string ip, string networkName, byte[]? rowVersion) 
+        : base(id, name, isOn)
+    {
+        if (networkName != null)
+        {
+            NetworkName = networkName;
+        }
+        else
+        {
+            throw new ArgumentNullException(nameof(networkName));
+        }
+        Ip = ip;
+
+        if (isOn = true && Connect(networkName))
+        {
+            throw new ConnectionException();
+        }
+        RowVersion = rowVersion;
     }
     
     /// <summary>

@@ -1,7 +1,8 @@
 CREATE TABLE Device (
     Id VARCHAR(50) PRIMARY KEY,
     Name NVARCHAR(100),
-    IsEnabled BIT
+    IsEnabled BIT,
+    RowVer ROWVERSION
 );
 
 CREATE TABLE Embedded (
@@ -9,19 +10,22 @@ CREATE TABLE Embedded (
     IpAddress VARCHAR(50),
     NetworkName VARCHAR(100),
     DeviceId VARCHAR(50),
-    FOREIGN KEY (DeviceId) REFERENCES Device(Id)
+    FOREIGN KEY (DeviceId) REFERENCES Device(Id),
+    RowVer ROWVERSION
 );
 
 CREATE TABLE PersonalComputer (
     Id INT PRIMARY KEY IDENTITY(1,1),
     OperationSystem VARCHAR(100),
     DeviceId VARCHAR(50),
-    FOREIGN KEY (DeviceId) REFERENCES Device(Id)
+    FOREIGN KEY (DeviceId) REFERENCES Device(Id),
+    RowVer ROWVERSION
 );
 
 CREATE TABLE Smartwatch (
     Id INT PRIMARY KEY IDENTITY(1,1),
     BatteryPercentage INT,
     DeviceId VARCHAR(50),
-    FOREIGN KEY (DeviceId) REFERENCES Device(Id)
+    FOREIGN KEY (DeviceId) REFERENCES Device(Id),
+    RowVer ROWVERSION
 );

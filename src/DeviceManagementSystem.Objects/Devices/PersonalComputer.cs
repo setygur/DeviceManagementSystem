@@ -6,6 +6,7 @@ using DeviceManagementSystem.Objects.Devices.DevicesExceptions;
 public class PersonalComputer : Device
 {
     public string? OperatingSystem { get; private set; }
+    public byte[]? RowVersion { get; set; }
     
     /// <summary>
     /// A constructor for a PersonalComputer object, take OperatingSystem as a param
@@ -18,6 +19,12 @@ public class PersonalComputer : Device
     public PersonalComputer(string id, string name, bool isOn, string? operatingSystem) : base(id, name, isOn)
     {
         OperatingSystem = operatingSystem;
+    }
+    
+    public PersonalComputer(string id, string name, bool isOn, string? operatingSystem, byte[]? rowVersion) : base(id, name, isOn)
+    {
+        OperatingSystem = operatingSystem;
+        RowVersion = rowVersion;
     }
 
     /// <summary>

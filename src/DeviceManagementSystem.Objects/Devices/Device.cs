@@ -5,6 +5,8 @@ public abstract class Device
     public string Id { get; set; }
     public string Name { get; set; }
     public bool IsOn { get; set; }
+    
+    public byte[]? RowVersion { get; set; }
 
     /// <summary>
     /// A Constructor for a Device object
@@ -33,6 +35,28 @@ public abstract class Device
             throw new ArgumentNullException(nameof(name));
         }
         IsOn = isOn;
+    }
+    public Device(string id, string name, bool isOn, byte[]? rowVersion)
+    {
+        if (id != null)
+        {
+            Id = id;
+        }
+        else
+        {
+            throw new ArgumentNullException(nameof(id));
+        }
+
+        if (name != null)
+        {
+            Name = name;
+        }
+        else
+        {
+            throw new ArgumentNullException(nameof(name));
+        }
+        IsOn = isOn;
+        RowVersion = rowVersion;
     }
 
     /// <summary>

@@ -1,4 +1,4 @@
-namespace DeviceManagementSystem.Logic.Services.ServicesExceptions;
+﻿namespace DeviceManagementSystem.Database.Repositories.RepositoryExceptions;
 
 public class NotFoundException : Exception
 {
